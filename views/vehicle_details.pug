@@ -8,3 +8,6 @@ block content
     p Description: #{vehicle.description}
     p Price Per Day: #{vehicle.pricePerDay}
   a(href=`/catalog/vehicle-types/${vehicle._id}/update`) Update Vehicle
+  form(action=`/catalog/vehicle-types/${vehicle._id}/delete?_method=DELETE` method="POST")
+    input(type="hidden" name="_method" value="DELETE")
+    button(type="submit") Delete

@@ -89,5 +89,17 @@ exports.update_vehicle_instance_post = asyncHandler(async (req, res, next) => {
   res.redirect(`/catalog/vehicle-instances/${vehicleInstanceId}`);
 });
 
+
+exports.delete_vehicle_instance = asyncHandler(async (req, res, next) => {
+  const vehicleInstanceId = req.params.id;
+
+  // Find the vehicle instance by its ID and remove it
+  await VehicleInstance.findByIdAndRemove(vehicleInstanceId).exec();
+
+  // Redirect to the vehicle instance list page after successful deletion
+  res.redirect("/catalog/vehicle-instances");
+});
+
+
   
   

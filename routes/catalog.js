@@ -44,6 +44,12 @@ router.get("/vehicle-instances/:id/update", vehicleInstanceController.update_veh
 // POST request for updating a vehicle instance (submit form)
 router.post("/vehicle-instances/:id/update", vehicleInstanceController.update_vehicle_instance_post);
 
+// DELETE request for deleting a vehicle
+router.delete("/vehicle-types/:id/delete", vehicleController.delete_vehicle);
+
+// DELETE request for deleting a vehicle instance
+router.delete("/vehicle-instances/:id/delete", vehicleInstanceController.delete_vehicle_instance);
+
 
 /* Display a specific vehicle or vehicle instance details */ 
 router.get("/vehicle-types/:id", vehicleController.vehicle_details);

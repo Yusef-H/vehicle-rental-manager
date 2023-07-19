@@ -116,6 +116,18 @@ exports.update_vehicle_post = asyncHandler(async (req, res, next) => {
     const savedVehicle = await vehicle.save();
     res.redirect(`/catalog/vehicle-types/${vehicleId}`);
 });
+
+
+exports.delete_vehicle = asyncHandler(async (req, res, next) => {
+    const vehicleId = req.params.id;
+  
+    // Find the vehicle by its ID and remove it
+    await Vehicle.findByIdAndRemove(vehicleId).exec();
+  
+    // Redirect to the vehicle list page after successful deletion
+    res.redirect("/catalog/vehicle-types");
+});
+  
   
   
   

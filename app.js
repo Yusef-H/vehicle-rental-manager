@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const methodOverride = require("method-override");
 
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -33,8 +34,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Override the DELETE method for forms
+app.use(methodOverride("_method"));
+
 app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

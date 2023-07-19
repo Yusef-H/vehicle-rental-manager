@@ -12,3 +12,6 @@ block content
   else
     p Vehicle instance not found
   a(href=`/catalog/vehicle-instances/${vehicleInstance._id}/update`) Update Vehicle Instance
+  form(action=`/catalog/vehicle-instances/${vehicleInstance._id}/delete?_method=DELETE` method="POST")
+    input(type="hidden" name="_method" value="DELETE")
+    button(type="submit") Delete
