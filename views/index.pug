@@ -1,5 +1,16 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h1= title
+    div
+      h2 Categories
+      ul
+        li
+          | Vehicle Types : #{vehicle_count}
+        li
+          | Vehicle Instances : #{vehicle_instance_count}
+        li
+          | Categories : #{category_count}
