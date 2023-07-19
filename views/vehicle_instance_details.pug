@@ -6,7 +6,8 @@ block content
   if vehicleInstance
     ul
       li Vehicle Instance ID: #{vehicleInstance._id}
-      li Vehicle Type: #{vehicleInstance.vehicle.type}
+      li Vehicle Type: 
+        a(href=`/catalog/vehicle-types/${vehicleInstance.vehicle._id}`) #{vehicleInstance.vehicle.type}
       li Status: #{vehicleInstance.status}
   else
     p Vehicle instance not found

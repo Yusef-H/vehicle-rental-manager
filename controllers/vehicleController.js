@@ -8,6 +8,21 @@ exports.vehicle_list = asyncHandler(async (req, res, next) => {
     res.render('vehicle_list', {title: 'Vehicle List', vehicle_list: allVehicles});
 })
 
+exports.specific_list = asyncHandler(async (req, res, next) => {
+    console.log(req.url.substring(1));
+    console.log("Hello");
+
+    const specific = await Vehicle.find()
+        .populate({
+            path: 'category',
+            match: { name: req.url.substring(1) }
+        })
+        .exec();
+    
+    const specificVehicles = specific.filter((vehicle) => vehicle.category !== null);
+    res.render('vehicle_list', {title: `${req.url.substring(1)} List`, vehicle_list: specificVehicles});
+})
+
 
 exports.vehicle_details = asyncHandler(async (req, res, next) => {
     const vehicleId = req.params.id;
@@ -19,3 +34,4 @@ exports.vehicle_details = asyncHandler(async (req, res, next) => {
 
     res.render("vehicle_details", { title: "Vehicle Details", vehicle });
 });
+

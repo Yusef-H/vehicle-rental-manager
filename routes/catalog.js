@@ -17,4 +17,10 @@ router.get('/categories', categoryController.category_list);
 router.get("/vehicle-types/:id", vehicleController.vehicle_details);
 router.get("/vehicle-instances/:id", vehicleInstanceController.vehicle_instance_details);
 
+
+router.get("/Car", vehicleController.specific_list);
+router.get("/Bicycle", vehicleController.specific_list);
+router.get("/Scooter", vehicleController.specific_list);
+router.get("/Motorbike", vehicleController.specific_list);
+
 module.exports = router;
