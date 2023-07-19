@@ -71,6 +71,52 @@ exports.create_vehicle_post = asyncHandler(async (req, res, next) => {
     // Save the new vehicle to the database
     const savedVehicle = await newVehicle.save();
     res.redirect("/catalog/vehicle-types");
+});
+
+
+
+
+exports.update_vehicle_get = asyncHandler(async (req, res, next) => {
+    const vehicleId = req.params.id;
+  
+    // Get the vehicle from the database
+    const vehicle = await Vehicle.findById(vehicleId).exec();
+  
+    if (!vehicle) {
+      // Handle the case when the vehicle is not found
+      return res.status(404).send("Vehicle not found");
+    }
+  
+    // Get the list of categories from the database
+    const categories = await Category.find().exec();
+  
+    // Render the vehicle update form with the vehicle data and categories
+    res.render("vehicle_update", { title: "Update Vehicle", vehicle, category_list: categories });
   });
+  
+
+exports.update_vehicle_post = asyncHandler(async (req, res, next) => {
+    const vehicleId = req.params.id;
+  
+    // Get the vehicle from the database
+    const vehicle = await Vehicle.findById(vehicleId).exec();
+  
+    if (!vehicle) {
+      // Handle the case when the vehicle is not found
+      return res.status(404).send("Vehicle not found");
+    }
+  
+    // Update the vehicle with the form data
+    vehicle.type = req.body.type;
+    vehicle.category = req.body.category;
+    vehicle.description = req.body.description;
+    vehicle.pricePerDay = req.body.pricePerDay;
+  
+    // Save the updated vehicle to the database
+    const savedVehicle = await vehicle.save();
+    res.redirect(`/catalog/vehicle-types/${vehicleId}`);
+});
+  
+  
   
   

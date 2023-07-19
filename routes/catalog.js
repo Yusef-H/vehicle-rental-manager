@@ -38,6 +38,12 @@ router.get("/categories/create", categoryController.create_category_get);
 router.post("/categories/create", categoryController.create_category_post);
 
 
+// GET request for updating a vehicle (display form)
+router.get("/vehicle-types/:id/update", vehicleController.update_vehicle_get);
+// POST request for updating a vehicle (submit form)
+router.post("/vehicle-types/:id/update", vehicleController.update_vehicle_post);
+
+
 /* Display a specific vehicle or vehicle instance details */ 
 router.get("/vehicle-types/:id", vehicleController.vehicle_details);
 router.get("/vehicle-instances/:id", vehicleInstanceController.vehicle_instance_details);

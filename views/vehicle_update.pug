@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  form(action=`/catalog/vehicle-types/${vehicle._id}/update` method="POST")
+    div
+      label(for="type") Type:
+      input(type="text" name="type" id="type" value=vehicle.type required)
+    div
+      label(for="category") Category:
+      select(name="category" id="category" required)
+        each category in category_list
+          option(value=category._id selected=(category._id.toString() === vehicle.category._id.toString()))= category.name
+    div
+      label(for="description") Description:
+      textarea(name="description" id="description" required)= vehicle.description
+    div
+      label(for="pricePerDay") Price Per Day:
+      input(type="number" name="pricePerDay" id="pricePerDay" step="0.01" value=vehicle.pricePerDay required)
+    div
+      button(type="submit") Update Vehicle
