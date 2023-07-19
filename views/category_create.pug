@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  form(action="/catalog/categories/create" method="POST")
+    div
+      label(for="name") Name:
+      input(type="text" name="name" id="name" required)
+    div
+      button(type="submit") Create Category

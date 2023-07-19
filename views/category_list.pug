@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1(class="title")= title
+  a(href="/catalog/categories/create") Add new Category
   ul
     each category in category_list
       li

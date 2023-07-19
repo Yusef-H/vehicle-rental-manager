@@ -32,6 +32,11 @@ router.post(
     vehicleInstanceController.create_vehicle_instance_post
 );
 
+// GET request for creating a category (display form)
+router.get("/categories/create", categoryController.create_category_get);
+// POST request for creating a category (submit form)
+router.post("/categories/create", categoryController.create_category_post);
+
 
 /* Display a specific vehicle or vehicle instance details */ 
 router.get("/vehicle-types/:id", vehicleController.vehicle_details);
