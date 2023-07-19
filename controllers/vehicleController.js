@@ -1,4 +1,5 @@
 const Vehicle = require("../models/vehicle");
+const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
 
 exports.vehicle_list = asyncHandler(async (req, res, next) => {
@@ -35,3 +36,34 @@ exports.vehicle_details = asyncHandler(async (req, res, next) => {
     res.render("vehicle_details", { title: "Vehicle Details", vehicle });
 });
 
+
+exports.create_vehicle_get = asyncHandler(async (req, res, next) => {
+    try {
+        // Get the list of categories from the database
+        const categories = await Category.find().exec();
+      
+        // Render the form view with the categories
+        res.render("vehicle_create", { title: "Create Vehicle", category_list: categories });
+      } catch (error) {
+        console.error("Error retrieving categories:", error);
+        next(error);
+      }
+});
+  
+
+exports.create_vehicle_post = asyncHandler(async (req, res, next) => {
+    console.log(req.body.category);
+    console.log('hi from post');
+    // Process the form data and create a new vehicle
+    const newVehicle = new Vehicle({
+      type: req.body.type,
+      category: req.body.category,
+      description: req.body.description,
+      pricePerDay: req.body.pricePerDay,
+    });
+  
+    // Save the new vehicle to the database
+    const savedVehicle = await newVehicle.save();
+    res.redirect(`/catalog/vehicle-types`);
+  });
+  

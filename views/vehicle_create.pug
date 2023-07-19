@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  form(action="/catalog/vehicle-types/create" method="POST")
+    div
+      label(for="type") Type:
+      input(type="text" name="type" id="type" required)
+    div
+      label(for="category") Category:
+      select(name="category" id="category" required)
+        each category in category_list
+          option(value=category._id)= category.name
+    div
+      label(for="description") Description:
+      textarea(name="description" id="description" required)
+    div
+      label(for="pricePerDay") Price Per Day:
+      input(type="number" name="pricePerDay" id="pricePerDay" step="0.01" required)
+    div
+      button(type="submit") Create Vehicle
+

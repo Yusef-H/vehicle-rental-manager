@@ -10,17 +10,28 @@ const categoryController = require("../controllers/categoryController");
 
 router.get('/', mainController.index);
 
+
 router.get('/vehicle-types', vehicleController.vehicle_list);
 router.get('/vehicle-instances', vehicleInstanceController.vehicle_instance_list);
 router.get('/categories', categoryController.category_list);
 
+// GET request for creating a vehicle (display form)
+router.get("/vehicle-types/create", vehicleController.create_vehicle_get);
+// POST request for creating a vehicle (submit form)
+router.post("/vehicle-types/create", vehicleController.create_vehicle_post);
+
+
+
+/* Display a specific vehicle or vehicle instance details */ 
 router.get("/vehicle-types/:id", vehicleController.vehicle_details);
 router.get("/vehicle-instances/:id", vehicleInstanceController.vehicle_instance_details);
 
-
+/* Display a specific vehicle category list view */ 
 router.get("/Car", vehicleController.specific_list);
 router.get("/Bicycle", vehicleController.specific_list);
 router.get("/Scooter", vehicleController.specific_list);
 router.get("/Motorbike", vehicleController.specific_list);
+
+
 
 module.exports = router;
