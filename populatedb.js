@@ -14,27 +14,85 @@ const sampleCategories = [
 
 // Define sample data for vehicles
 const sampleVehicles = [
-    {
-      type: 'Mazda',
-      category: 'Car', // Update with the correct category name
-      description: 'Comfortable and reliable car',
-      pricePerDay: 50,
-    },
-    {
-      type: 'Volvo',
-      category: 'Car', // Update with the correct category name
-      description: 'Safe and luxurious car',
-      pricePerDay: 70,
-    },
-    {
-      type: 'BMX Bike',
-      category: 'Bicycle', // Update with the correct category name
-      description: 'Durable and agile bicycle',
-      pricePerDay: 20,
-    },
-    // Add more vehicles as needed
-  ];
-  
+  {
+    type: 'Mazda',
+    category: 'Car',
+    description: 'Comfortable and reliable car',
+    pricePerDay: 50,
+  },
+  {
+    type: 'Volvo',
+    category: 'Car',
+    description: 'Safe and luxurious car',
+    pricePerDay: 70,
+  },
+  {
+    type: 'BMX Bike',
+    category: 'Bicycle',
+    description: 'Durable and agile bicycle',
+    pricePerDay: 20,
+  },
+  {
+    type: 'Toyota',
+    category: 'Car',
+    description: 'Fuel-efficient and reliable car',
+    pricePerDay: 60,
+  },
+  {
+    type: 'Mountain Bike',
+    category: 'Bicycle',
+    description: 'Rugged and versatile bicycle',
+    pricePerDay: 25,
+  },
+  {
+    type: 'Honda',
+    category: 'Car',
+    description: 'Sporty and stylish car',
+    pricePerDay: 65,
+  },
+  {
+    type: 'Suzuki',
+    category: 'Motorbike',
+    description: 'Powerful and agile motorbike',
+    pricePerDay: 80,
+  },
+  {
+    type: 'Electric Scooter',
+    category: 'Scooter',
+    description: 'Eco-friendly and convenient scooter',
+    pricePerDay: 30,
+  },
+  {
+    type: 'Ford',
+    category: 'Car',
+    description: 'Spacious and comfortable car',
+    pricePerDay: 55,
+  },
+  {
+    type: 'City Bike',
+    category: 'Bicycle',
+    description: 'Lightweight and urban bicycle',
+    pricePerDay: 15,
+  },
+  {
+    type: 'Kawasaki',
+    category: 'Motorbike',
+    description: 'High-performance and adrenaline-inducing motorbike',
+    pricePerDay: 90,
+  },
+  {
+    type: 'Vespa',
+    category: 'Scooter',
+    description: 'Classic and stylish scooter',
+    pricePerDay: 35,
+  },
+  {
+    type: 'Hyundai',
+    category: 'Car',
+    description: 'Modern and feature-packed car',
+    pricePerDay: 75,
+  },
+];
 
 async function populateDatabase() {
   try {
@@ -66,12 +124,22 @@ async function populateDatabase() {
     console.log('Vehicles created:', vehicles);
 
     // Create vehicle instances
-    const vehicleInstances = await VehicleInstance.create([
-      { vehicle: vehicles[0]._id, status: 'Available' },
-      { vehicle: vehicles[1]._id, status: 'Rented' },
-      // Add more vehicle instances as needed
-    ]);
-    console.log('Vehicle instances created:', vehicleInstances);
+    const vehicleInstances = [];
+    let numVehicleInstances = 25;
+    for (let i = 0; i < numVehicleInstances; i++) {
+      const randomVehicle = vehicles[Math.floor(Math.random() * vehicles.length)];
+      const status = i < 5 ? 'Rented' : 'Available';
+
+      const vehicleInstance = {
+        vehicle: randomVehicle._id,
+        status: status,
+      };
+
+      vehicleInstances.push(vehicleInstance);
+    }
+
+    const createdVehicleInstances = await VehicleInstance.create(vehicleInstances);
+    console.log('Vehicle instances created:', createdVehicleInstances);
 
     // Disconnect from MongoDB
     await mongoose.disconnect();

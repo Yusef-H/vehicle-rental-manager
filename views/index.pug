@@ -4,13 +4,11 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    h1= title
-    div
-      h2 Categories
+    h1(class="title")= title
+    div(class="catalog")
+      p The rental shop has the following counts:
       ul
-        li
-          | Vehicle Types : #{vehicle_count}
-        li
-          | Vehicle Instances : #{vehicle_instance_count}
-        li
-          | Categories : #{category_count}
+        li Vehicle Types : #{vehicle_count}
+        li Available Vehicles : #{vehicle_available_count}
+        li Rented Vehicles : #{vehicle_rented_count}
+        li Categories : #{category_count}

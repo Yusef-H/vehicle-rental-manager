@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 // Require controller modules.
-const vehicleController = require("../controllers/vehicleController");
+const mainController = require("../controllers/mainController");
 
-router.get('/', vehicleController.index);
+router.get('/', mainController.index);
 
 module.exports = router;
