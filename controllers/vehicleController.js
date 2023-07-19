@@ -2,6 +2,7 @@ const Vehicle = require("../models/vehicle");
 const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
 
+
 exports.vehicle_list = asyncHandler(async (req, res, next) => {
     const allVehicles = await Vehicle.find()
         .exec();

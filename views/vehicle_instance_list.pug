@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1(class="title")= title
+  a(href="/catalog/vehicle-instances/create") Add new vehicle instance
   ul
     each vehicle_instance in vehicle_instance_list
       li

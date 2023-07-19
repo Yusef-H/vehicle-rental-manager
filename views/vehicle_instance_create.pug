@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  form(action="/catalog/vehicle-instances/create" method="POST")
+    div
+      label(for="vehicle") Vehicle:
+      select(name="vehicle" id="vehicle" required)
+        each vehicle in vehicles
+          option(value=vehicle._id)= vehicle.type
+    div
+      label(for="status") Status:
+      select(name="status" id="status" required)
+        option(value="Available") Available
+        option(value="Rented") Rented
+    div
+      button(type="submit") Create Vehicle Instance

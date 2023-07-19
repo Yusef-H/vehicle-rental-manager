@@ -20,6 +20,17 @@ router.get("/vehicle-types/create", vehicleController.create_vehicle_get);
 // POST request for creating a vehicle (submit form)
 router.post("/vehicle-types/create", vehicleController.create_vehicle_post);
 
+// GET request for creating a vehicle instance (display form)
+router.get(
+    '/vehicle-instances/create',
+    vehicleInstanceController.create_vehicle_instance_get
+);
+  
+// POST request for creating a vehicle instance (submit form)
+router.post(
+    '/vehicle-instances/create',
+    vehicleInstanceController.create_vehicle_instance_post
+);
 
 
 /* Display a specific vehicle or vehicle instance details */ 
