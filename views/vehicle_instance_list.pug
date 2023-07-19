@@ -5,6 +5,5 @@ block content
   ul
     each vehicle_instance in vehicle_instance_list
       li
-        h2 #{vehicle_instance.vehicle.type}
-        p id: #{vehicle_instance._id}
-        p Status: #{vehicle_instance.status}
+        a(href = `/catalog/vehicle-instances/${vehicle_instance._id}`)
+            h2 #{vehicle_instance.vehicle.type}

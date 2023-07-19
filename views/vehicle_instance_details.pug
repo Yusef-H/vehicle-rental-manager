@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  h2 Vehicle Instance Details
+  if vehicleInstance
+    ul
+      li Vehicle Instance ID: #{vehicleInstance._id}
+      li Vehicle Type: #{vehicleInstance.vehicle.type}
+      li Status: #{vehicleInstance.status}
+  else
+    p Vehicle instance not found

@@ -15,5 +15,6 @@ router.get('/vehicle-instances', vehicleInstanceController.vehicle_instance_list
 router.get('/categories', categoryController.category_list);
 
 router.get("/vehicle-types/:id", vehicleController.vehicle_details);
+router.get("/vehicle-instances/:id", vehicleInstanceController.vehicle_instance_details);
 
 module.exports = router;
