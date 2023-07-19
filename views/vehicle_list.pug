@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  ul
+    each vehicle in vehicle_list
+      li
+        h2 #{vehicle.type}
+        p Category: #{vehicle.category.name}
+        p Description: #{vehicle.description}
+        p Price per Day: #{vehicle.pricePerDay}

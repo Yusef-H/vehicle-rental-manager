@@ -1,14 +1,20 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    h1(class="title")= title
-    div(class="catalog")
-      p The rental shop has the following counts:
-      ul
-        li Vehicle Types : #{vehicle_count}
-        li Available Vehicles : #{vehicle_available_count}
-        li Rented Vehicles : #{vehicle_rented_count}
-        li Categories : #{category_count}
+extends layout
+
+block content
+  h1(class="title")= title
+  div(class="catalog")
+    p The rental shop has the following counts:
+    ul
+      li Vehicle Types: #{vehicle_count}
+      li Available Vehicles: #{vehicle_available_count}
+      li Rented Vehicles: #{vehicle_rented_count}
+      li Categories: #{category_count}
+    
+    ul
+      li
+        a(href='/catalog/vehicle-types') View All Vehicle Types
+      li 
+        a(href='/vehicle-instances') View All Vehicle Instances
+      li
+        a(href='/categories') View All Categories
+
