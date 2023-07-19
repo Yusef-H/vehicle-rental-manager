@@ -19,29 +19,30 @@ router.get('/categories', categoryController.category_list);
 router.get("/vehicle-types/create", vehicleController.create_vehicle_get);
 // POST request for creating a vehicle (submit form)
 router.post("/vehicle-types/create", vehicleController.create_vehicle_post);
-
 // GET request for creating a vehicle instance (display form)
 router.get(
     '/vehicle-instances/create',
     vehicleInstanceController.create_vehicle_instance_get
 );
-  
 // POST request for creating a vehicle instance (submit form)
 router.post(
     '/vehicle-instances/create',
     vehicleInstanceController.create_vehicle_instance_post
 );
-
 // GET request for creating a category (display form)
 router.get("/categories/create", categoryController.create_category_get);
 // POST request for creating a category (submit form)
 router.post("/categories/create", categoryController.create_category_post);
 
-
 // GET request for updating a vehicle (display form)
 router.get("/vehicle-types/:id/update", vehicleController.update_vehicle_get);
 // POST request for updating a vehicle (submit form)
 router.post("/vehicle-types/:id/update", vehicleController.update_vehicle_post);
+
+// GET request for updating a vehicle instance (display form)
+router.get("/vehicle-instances/:id/update", vehicleInstanceController.update_vehicle_instance_get);
+// POST request for updating a vehicle instance (submit form)
+router.post("/vehicle-instances/:id/update", vehicleInstanceController.update_vehicle_instance_post);
 
 
 /* Display a specific vehicle or vehicle instance details */ 

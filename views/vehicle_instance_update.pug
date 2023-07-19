@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  form(action=`/catalog/vehicle-instances/${vehicleInstance._id}/update` method="POST")
+    div
+      label(for="status") Status:
+      select(name="status" id="status" required)
+        option(value="Available" selected=(vehicleInstance.status === "Available")) Available
+        option(value="Rented" selected=(vehicleInstance.status === "Rented")) Rented
+    div
+      button(type="submit") Update Vehicle Instance
