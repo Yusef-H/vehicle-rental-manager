@@ -5,7 +5,6 @@ block content
   ul
     each vehicle in vehicle_list
       li
-        h2 #{vehicle.type}
-        p Category: #{vehicle.category.name}
-        p Description: #{vehicle.description}
-        p Price per Day: #{vehicle.pricePerDay}
+        a(href=`/catalog/vehicle-types/${vehicle._id}`)
+            h2 #{vehicle.type}
+        

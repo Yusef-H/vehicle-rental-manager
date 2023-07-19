@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1(class="title")= title
+  h2 #{vehicle.type}
+  div
+    p Category: #{vehicle.category.name}
+    p Description: #{vehicle.description}
+    p Price Per Day: #{vehicle.pricePerDay}
