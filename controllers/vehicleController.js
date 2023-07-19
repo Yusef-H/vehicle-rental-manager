@@ -52,9 +52,14 @@ exports.create_vehicle_get = asyncHandler(async (req, res, next) => {
   
 
 exports.create_vehicle_post = asyncHandler(async (req, res, next) => {
-    console.log(req.body.category);
-    console.log('hi from post');
-    // Process the form data and create a new vehicle
+    // Check if a vehicle with the same type already exists
+    const existingVehicle = await Vehicle.findOne({ type: req.body.type }).exec();
+    if (existingVehicle) {
+      // Handle the validation error
+      return res.status(400).send("A vehicle with the same type already exists.");
+    }
+  
+    // Create a new vehicle with the form data
     const newVehicle = new Vehicle({
       type: req.body.type,
       category: req.body.category,
@@ -64,6 +69,7 @@ exports.create_vehicle_post = asyncHandler(async (req, res, next) => {
   
     // Save the new vehicle to the database
     const savedVehicle = await newVehicle.save();
-    res.redirect(`/catalog/vehicle-types`);
+    res.redirect("/catalog/vehicle-types");
   });
+  
   
