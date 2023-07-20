@@ -1,5 +1,6 @@
 const Vehicle = require("../models/vehicle");
 const Category = require("../models/category");
+const VehicleInstance = require("../models/vehicleInstance");
 const asyncHandler = require("express-async-handler");
 
 
@@ -119,15 +120,23 @@ exports.update_vehicle_post = asyncHandler(async (req, res, next) => {
 
 
 exports.delete_vehicle = asyncHandler(async (req, res, next) => {
-    const vehicleId = req.params.id;
-  
-    // Find the vehicle by its ID and remove it
-    await Vehicle.findByIdAndRemove(vehicleId).exec();
-  
-    // Redirect to the vehicle list page after successful deletion
-    res.redirect("/catalog/vehicle-types");
+  const vehicleId = req.params.id;
+
+  // Check if there are any vehicle instances associated with this vehicle
+  const vehicleInstances = await VehicleInstance.find({ vehicle: vehicleId }).exec();
+
+  if (vehicleInstances.length > 0) {
+    console.log(vehicleInstances);
+    // If there are instances, prevent the deletion and show an error message
+    return res.status(400).send("Cannot delete this vehicle because it has associated instances.");
+  }
+
+  // No instances found, proceed with the deletion
+  await Vehicle.findByIdAndRemove(vehicleId).exec();
+
+  // Redirect to the vehicle list page after successful deletion
+  res.redirect("/catalog/vehicle-types");
 });
-  
   
   
   
